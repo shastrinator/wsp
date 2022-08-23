@@ -2,6 +2,7 @@ package client
 
 import (
 	"context"
+	"crypto/tls"
 	"net/http"
 
 	"github.com/gorilla/websocket"
@@ -21,8 +22,17 @@ type Client struct {
 func NewClient(config *Config) (c *Client) {
 	c = new(Client)
 	c.Config = config
-	c.client = &http.Client{}
-	c.dialer = &websocket.Dialer{}
+	c.client = &http.Client{Transport: &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}}
+	c.dialer = &websocket.Dialer{
+		Proxy: http.ProxyFromEnvironment,
+		//func(*http.Request) (*url.URL, error) {
+		//	return url.Parse(os.Getenv("HTTP_PROXY"))
+		//},
+		// TODO Remove: Skip server cert validation for now
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
 	c.pools = make(map[string]*Pool)
 	return
 }

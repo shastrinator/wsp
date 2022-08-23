@@ -57,11 +57,11 @@ make run-test-server
 ```bash
 $ ./wsp_server -config examples/wsp_server.cfg
 {
-  "Host": "127.0.0.1",
-  "Port": 8080,
-  "Timeout": 1000,
-  "IdleTimeout": 60000,
-  "SecretKey": ""
+  "host": "127.0.0.1",
+  "port": 8080,
+  "timeout": 1000,
+  "idleTimeout": 60000,
+  "secretKey": ""
 }
 ```
 
@@ -70,13 +70,13 @@ $ ./wsp_server -config examples/wsp_server.cfg
 ```bash
 $ ./wsp_client -config examples/wsp_client.cfg
 {
-  "ID": "4b98d5a0-6794-421c-6a66-20f3edd81174",
-  "Targets": [
+  "iD": "4b98d5a0-6794-421c-6a66-20f3edd81174",
+  "targets": [
     "ws://127.0.0.1:8080/register"
   ],
-  "PoolIdleSize": 1,
-  "PoolMaxSize": 100,
-  "SecretKey": ""
+  "poolIdleSize": 1,
+  "poolMaxSize": 100,
+  "secretKey": ""
 }
 ```
 

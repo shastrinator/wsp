@@ -45,11 +45,10 @@ func LoadConfiguration(path string) (config *Config, err error) {
 	if err != nil {
 		return
 	}
-
 	err = yaml.Unmarshal(bytes, config)
 	if err != nil {
-		return
+		return config, err
 	}
 
-	return
+	return config, err
 }
